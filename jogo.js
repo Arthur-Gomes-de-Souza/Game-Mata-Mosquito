@@ -1,5 +1,6 @@
 var altura = 0;
 var largura = 0;
+var vidas = 1;
 
 function ajustaTamanhoPalcoJogo() {
     altura = window.innerHeight;
@@ -42,6 +43,14 @@ function posicaoRandomica() {
     // REMOVER O MOSQUITO ANTERIOR (CASO EXISTA):
     if (document.getElementById('mosquito')) {
         document.getElementById('mosquito').remove();
+
+        if (vidas > 3) {
+            alert('Game over');
+        } else {
+            document.getElementById('v' + vidas).src='imagens/coracao_vazio.png';
+
+            vidas++;
+        }
     }
     
 
@@ -64,8 +73,11 @@ function posicaoRandomica() {
     mosquito.style.position = 'absolute';
     mosquito.style.left = posicaoX + 'px';
     mosquito.style.top = posicaoY + 'px';
-
     mosquito.id = 'mosquito';
+    mosquito.onclick = function() {
+        this.remove();
+        // THIS FAZ REFERENCIA AO PROPRIO ELEMENTO QUE EXECUTA A AÇÃO.
+    }
 
     document.body.appendChild(mosquito);
 
