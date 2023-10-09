@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game - Mata Mosquitos</title>
-
+    <title>Game Over</title>
+    <!-- BOOTSTRAP: -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- ESTILO: -->
     <link rel="stylesheet" href="css/estilo.css">
 
-    <script src="jogo.js"></script>
-</head>
-<body onresize="ajustaTamanhoPalcoJogo()">
+    <script>
+        function iniciarJogo() {
+            var nivel = document.getElementById('nivel').value;
 
-    <div class="painel">
-        <div class="vidas">
-            <img id="v1" src="imagens/coracao_cheio.png" alt="Coração vazio">
-            <img id="v2" src="imagens/coracao_cheio.png" alt="Coração cheio">
-            <img id="v3" src="imagens/coracao_cheio.png" alt="Coração cheio">
+            if (nivel === '') {
+                alert('Selecione um nível para iniciar o jogo!');
+                return false;
+            }
+
+            window.location.href = 'app.html?' + nivel;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <img src="imagens/game.png" alt="Página inicial">
+                </div>
+            </div>
         </div>
 
-        <div class="cronometro">
-            Tempo restante: <span id="cronometro"></span>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div class="mb-2">
+                        <select id="nivel" class="form-control">
+                            <option value="">-- Selecionar o nível --</option>
+                            <option value="normal">Normal</option>
+                            <option value="dificil">Difícil</option>
+                            <option value="chucknorris">Chucky Norris</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger btn-lg" onclick="iniciarJogo()">Iniciar Jogo</button>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <script>
-        document.getElementById('cronometro').innerHTML = tempo;
 
-        var criaMosquito = setInterval(function() {
-            posicaoRandomica();
-        }, 2000);
-    </script>
+
 </body>
+
 </html>
